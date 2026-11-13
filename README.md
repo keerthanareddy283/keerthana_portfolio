@@ -1,11 +1,29 @@
-<div align="center">
+# Etteti Keerthana — Portfolio
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Personal portfolio website of **Etteti Keerthana**, a first-year B.Tech CSE (AI) student at **NIAT in collaboration with Joy University** who builds websites with the help of AI.
 
-  <h1>Built with AI Studio</h2>
+## Projects
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+- **Task Flow** — A to-do list app to organize tasks with priorities and due dates, featuring dark/light mode. Built with AI-assisted development (`React`, `TypeScript`, `Tailwind CSS`, `Vite`).
+  - Live: https://task-flow-alpha-inky.vercel.app/
+  - GitHub: https://github.com/keerthanareddy283/Task-flow.git
+- **Expense Tracker** — A personal finance dashboard to log income and expenses and view spending by category with charts. Built with AI-assisted development (`React`, `TypeScript`, `Tailwind CSS`, `Recharts`, `Vite`).
+  - Live: https://expense-tracker-keerthi-8fd5.vercel.app/
+  - GitHub: https://github.com/keerthanareddy283/Expense-tracker.git
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Tech Stack
 
-</div>
+- **Frontend:** HTML, CSS, JavaScript, React, TypeScript, Tailwind CSS
+- **Tools & Workflow:** Git, GitHub, VS Code, Vercel, Google AI Studio, Vibe Coding
+
+## Contact
+
+- **Email:** [keerthanareddyetteti709@gmail.com](mailto:keerthanareddyetteti709@gmail.com)
+- **GitHub:** [https://github.com/keerthanareddy283](https://github.com/keerthanareddy283)
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```

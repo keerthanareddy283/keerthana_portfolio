@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boddu Harshavardhan — Night Route Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            night: '#08090C',
+            'night-card': '#0E1015',
+            'night-border': '#1A1D24',
+            crimson: '#E0314B',
+            'crimson-dim': 'rgba(224, 49, 75, 0.15)',
+            'warm-white': '#F5F1EA',
+            'muted-text': '#8A8F98',
+            amber: '#FFD9A0',
+          },
+          fontFamily: {
+            grotesk: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          borderRadius: {
+            sharp: '2px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #08090C;
+      color: #F5F1EA;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .transit-spine {
+      position: absolute;
+      left: 36px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, #E0314B 0%, rgba(224,49,75,0.7) 85%, rgba(224,49,75,0.1) 100%);
+      z-index: 10;
+    }
+    @media (min-width: 1024px) {
+      .transit-spine {
+        left: 64px;
+      }
+    }
+    .hairline-border {
+      border: 1px solid #1A1D24;
+    }
+    .hairline-border-crimson {
+      border: 1px solid rgba(224, 49, 75, 0.35);
+    }
+    .pulse-dot {
+      box-shadow: 0 0 0 0 rgba(224, 49, 75, 0.7);
+      animation: pulse-ring 2s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(224, 49, 75, 0.8); }
+      70% { box-shadow: 0 0 0 8px rgba(224, 49, 75, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(224, 49, 75, 0); }
+    }
+    .amber-glow {
+      box-shadow: 0 0 45px -8px rgba(255, 217, 160, 0.22);
+    }
+    .duotone-crimson {
+      filter: grayscale(100%) contrast(110%);
+      mix-blend-mode: luminosity;
+    }
+    /* Station marker node */
+    .station-node {
+      width: 15px;
+      height: 15px;
+      background: #08090C;
+      border: 2px solid #E0314B;
+      border-radius: 50%;
+      position: relative;
+    }
+    .station-node::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: #E0314B;
+      border-radius: 50%;
+    }
+    /* Flap display effect */
+    .flap-board {
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-crimson selection:text-white relative overflow-x-hidden">
+
+  <!-- BACKGROUND SUBTLE GRID / TRANSIT RULING -->
+  <div class="fixed inset-0 pointer-events-none opacity-[0.035] bg-[radial-gradient(#F5F1EA_1px,transparent_1px)] [background-size:24px_24px] z-0"></div>
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-50 bg-[#08090C]/90 backdrop-blur-md hairline-border border-x-0 border-t-0">
+    <div class="max-w-[1440px] mx-auto px-8 lg:px-16 h-20 flex items-center justify-between">
+      
+      <!-- HB Monogram -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 hairline-border border-crimson/60 bg-night-card flex items-center justify-center font-mono font-bold text-warm-white text-sm tracking-widest rounded-sharp group-hover:border-crimson transition-colors">
+          HB
+        </div>
+        <div class="hidden sm:flex flex-col">
+          <span class="font-grotesk font-bold text-xs uppercase tracking-widest text-warm-white">Harshavardhan</span>
+          <span class="font-mono text-[10px] text-muted-text tracking-wider">ROUTE 2026 // NIAT</span>
+        </div>
+      </a>
+
+      <!-- Center Links -->
+      <nav class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-wider text-muted-text">
+        <a href="#work" class="hover:text-warm-white transition-colors flex items-center gap-1.5"><span class="text-crimson">01</span> Work</a>
+        <a href="#code" class="hover:text-warm-white transition-colors flex items-center gap-1.5"><span class="text-crimson">02</span> Code</a>
+        <a href="#about" class="hover:text-warm-white transition-colors flex items-center gap-1.5"><span class="text-crimson">03</span> About</a>
+        <a href="#skills" class="hover:text-warm-white transition-colors flex items-center gap-1.5"><span class="text-crimson">04</span> Skills</a>
+        <a href="#contact" class="hover:text-warm-white transition-colors flex items-center gap-1.5"><span class="text-crimson">05</span> Contact</a>
+      </nav>
+
+      <!-- Next stop: Internship pill -->
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5 px-3.5 py-1.5 hairline-border border-crimson/40 bg-night-card rounded-sharp">
+          <span class="w-2 h-2 rounded-full bg-crimson pulse-dot"></span>
+          <span class="font-mono text-[11px] uppercase tracking-wider text-warm-white">
+            <span class="text-muted-text">Next stop:</span> <span class="text-crimson font-semibold">Internship</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER WITH CONTINUOUS SPINE -->
+  <div class="relative max-w-[1440px] mx-auto">
+    <!-- Continuous Transit Line Spine -->
+    <div class="transit-spine hidden md:block"></div>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-8 pb-16 lg:pt-16 lg:pb-24 pl-8 md:pl-28 lg:pl-36 pr-8 lg:pr-16">
+      
+      <!-- Progress tag -->
+      <div class="flex items-center gap-3 mb-6 font-mono text-xs text-muted-text tracking-widest uppercase">
+        <span class="w-2.5 h-2.5 bg-crimson rounded-full inline-block"></span>
+        <span>Origin: NIAT / Joy University, Tamil Nadu</span>
+        <span class="text-crimson">//</span>
+        <span>Transit ID: HB-2026</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left: Text -->
+        <div class="lg:col-span-7 z-20">
+          <h1 class="font-grotesk font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-[68px] leading-[1.05] tracking-tight text-warm-white mb-6">
+            Building the apps that get people <span class="text-crimson underline decoration-crimson/50 underline-offset-8">where they’re going.</span>
+          </h1>
+          
+          <p class="font-grotesk text-lg lg:text-xl text-muted-text max-w-xl mb-10 leading-relaxed">
+            First-year B.Tech CSE (AI/ML) student building AI-assisted web apps with Claude, Google AI Studio, Gemini, and Supabase.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-4 mb-12">
+            <a href="#work" class="px-7 py-3.5 bg-crimson hover:bg-crimson/90 text-white font-mono text-xs font-semibold uppercase tracking-widest rounded-sharp transition-all flex items-center gap-2">
+              <span>View Projects</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </a>
+            <a href="#contact" class="px-7 py-3.5 hairline-border border-warm-white/20 hover:border-crimson text-warm-white font-mono text-xs font-semibold uppercase tracking-widest rounded-sharp bg-night-card/50 transition-all flex items-center gap-2">
+              <span>Download CV</span>
+              <svg class="w-3.5 h-3.5 text-muted-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            </a>
+          </div>
+
+          <!-- Quick Telemetry indicators -->
+          <div class="grid grid-cols-3 gap-3 pt-6 border-t hairline-border border-night-border max-w-lg font-mono text-xs">
+            <div>
+              <div class="text-muted-text text-[10px] uppercase">Specialization</div>
+              <div class="text-warm-white font-semibold mt-0.5">AI / ML + Web</div>
+            </div>
+            <div>
+              <div class="text-muted-text text-[10px] uppercase">Stack Focus</div>
+              <div class="text-warm-white font-semibold mt-0.5">Gemini + Supabase</div>
+            </div>
+            <div>
+              <div class="text-muted-text text-[10px] uppercase">Availability</div>
+              <div class="text-crimson font-semibold mt-0.5">Summer 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Image 1 Night Shot blended seamlessly -->
+        <div class="lg:col-span-5 relative flex justify-center lg:justify-end">
+          <div class="relative w-full max-w-[420px] aspect-[9/16] rounded-sharp overflow-hidden hairline-border border-night-border shadow-2xl">
+            <!-- Street lamp soft amber glow overlay at upper middle -->
+            <div class="absolute top-[28%] left-[45%] w-24 h-24 bg-amber/25 blur-3xl pointer-events-none rounded-full z-10"></div>
+            
+            <!-- Vignette & Edge Blend into Page BG -->
+            <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-night via-transparent to-transparent opacity-80 z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-night/60 via-transparent to-night/80 z-10"></div>
+
+            <!-- Image 3: vertical night photo, smiling, light pink shirt -->
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyISPyYbCRzCOK8KJ_QdMEOSUdoTc5e4CFmzJUs38o6BH0dqAxL0eZlXV6WPI1_jQWv1bl4Ep5hViU3NDG5_kpzlwe_fv5wROuXum48bFKbA9jcdgxYhKvcf4MbofHmeUfZXC6AEqQCwQRuU-7ggyxSp2ZXL0SJycVrs7IEoQLckDGupG3TskLBoawsfP0h86B5pRHSPYRSdtujQj9DPI-IMpVN_hxFHWkK6T2pamzj0Rb7qaucYUY" alt="Boddu Harshavardhan on night transit route" class="w-full h-full object-cover object-center filter brightness-95 contrast-105">
+
+            <!-- Route Stamp Overlay -->
+            <div class="absolute bottom-4 left-4 right-4 z-20 font-mono text-[10px] p-3 bg-night/85 backdrop-blur-sm hairline-border border-night-border flex items-center justify-between">
+              <span class="text-muted-text">NIGHT ROUTE // LAT 12.83°N</span>
+              <span class="text-crimson font-semibold tracking-wider">VESPER STATION</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Departure Board Strip at Hero Bottom -->
+      <div class="mt-14 hairline-border border-crimson/40 bg-night-card p-4 rounded-sharp overflow-x-auto">
+        <div class="flex items-center justify-between min-w-[760px] font-mono text-xs flap-board">
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 bg-crimson rounded-full animate-ping"></span>
+            <span class="text-muted-text">DEP:</span>
+            <span class="text-warm-white font-semibold">2026.01 / CHENNAI-TAMIL NADU</span>
+          </div>
+          <div class="text-night-border">|</div>
+          <div class="flex items-center gap-2">
+            <span class="text-muted-text">DESTINATION:</span>
+            <span class="text-warm-white font-semibold bg-night px-2 py-0.5 border border-night-border">AI / ML &amp; FULL-STACK INTERNSHIP</span>
+          </div>
+          <div class="text-night-border">|</div>
+          <div class="flex items-center gap-2">
+            <span class="text-muted-text">TRACK:</span>
+            <span class="text-warm-white">PLATFORM 01</span>
+          </div>
+          <div class="text-night-border">|</div>
+          <div class="flex items-center gap-2">
+            <span class="text-muted-text">STATUS:</span>
+            <span class="text-crimson font-bold bg-crimson-dim px-2 py-0.5 rounded-sharp">ON TIME [DISPATCH READY]</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION: STOP 01 / WORK -->
+    <section id="work" class="relative py-20 pl-8 md:pl-28 lg:pl-36 pr-8 lg:pr-16">
+      
+      <!-- Station Node Marker -->
+      <div class="hidden md:flex absolute -left-[7px] top-24 items-center z-20">
+        <div class="station-node"></div>
+      </div>
+
+      <!-- Section Title & Station Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-6 border-b hairline-border border-night-border">
+        <div>
+          <div class="font-mono text-xs uppercase tracking-widest text-crimson mb-2 flex items-center gap-2">
+            <span>STOP 01</span>
+            <span class="text-muted-text">/ 05</span>
+            <span class="w-8 h-[1px] bg-crimson"></span>
+            <span class="text-muted-text">SELECTED PRODUCTIONS</span>
+          </div>
+          <h2 class="font-grotesk font-bold text-3xl sm:text-4xl text-warm-white">
+            Work &amp; Deployed Products
+          </h2>
+        </div>
+        <div class="font-mono text-xs text-muted-text mt-4 md:mt-0 flex items-center gap-2">
+          <span>YOU ARE HERE:</span>
+          <span class="px-2 py-0.5 bg-crimson-dim text-crimson font-bold rounded-sharp">PLATFORM 01 (PROJECTS)</span>
+        </div>
+      </div>
+
+      <!-- 4 Editorial Project Panels Stacked Vertically -->
+      <div class="space-y-12">
+        
+        <!-- PROJECT 1: WILDDEX -->
+        <div class="group hairline-border border-night-border hover:border-crimson/50 bg-night-card rounded-sharp p-6 lg:p-8 transition-colors">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-6 flex flex-col justify-between h-full">
+              <div>
+                <div class="flex items-center justify-between mb-4 font-mono text-xs">
+                  <span class="text-muted-text tracking-wider">PROJECT NO. 01</span>
+                  <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-sharp flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> STATUS: LIVE
+                  </span>
+                </div>
+
+                <h3 class="font-grotesk font-bold text-2xl sm:text-3xl text-warm-white mb-2 group-hover:text-crimson transition-colors">
+                  WILDDEX
+                </h3>
+                <p class="font-mono text-xs text-crimson mb-4">wild-dex-pearl.vercel.app</p>
+
+                <p class="text-muted-text font-grotesk text-sm sm:text-base leading-relaxed mb-6">
+                  Species encyclopedia engineered with an instant AI specimen scanner, field collection dex, and an interactive naturalist network. Enables on-site biodiversity tagging with smart visual identification models.
+                </p>
+
+                <!-- Mono tech tags -->
+                <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs">
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">AI Specimen Scanner</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Computer Vision</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Vercel</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Claude AI</span>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div class="flex items-center gap-4 pt-4 border-t hairline-border border-night-border">
+                <a href="https://wild-dex-pearl.vercel.app" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-crimson hover:bg-crimson/90 text-white font-mono text-xs uppercase tracking-wider rounded-sharp flex items-center gap-2 transition-all">
+                  <span>Live demo</span>
+                  <span>↗</span>
+                </a>
+                <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 hairline-border border-night-border hover:border-crimson text-muted-text hover:text-warm-white font-mono text-xs uppercase tracking-wider rounded-sharp flex items-center gap-2 transition-all">
+                  <span>GitHub</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Visual Mockup/Placeholder -->
+            <div class="lg:col-span-6 bg-night hairline-border border-night-border p-5 rounded-sharp relative overflow-hidden group-hover:border-crimson/30 transition-all">
+              <div class="flex items-center justify-between pb-3 border-b hairline-border border-night-border font-mono text-[11px] text-muted-text">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-crimson/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber/60"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-night-border"></span>
+                </div>
+                <span>https://wild-dex-pearl.vercel.app</span>
+              </div>
+              <div class="pt-4 space-y-3">
+                <div class="h-36 bg-night-card hairline-border border-night-border flex flex-col items-center justify-center relative p-4 text-center">
+                  <div class="font-mono text-xs text-crimson mb-1">[AI SPECIMEN SCANNER ACTIVE]</div>
+                  <div class="font-grotesk font-semibold text-warm-white text-base">Flora &amp; Fauna Neural Classifier</div>
+                  <div class="font-mono text-[10px] text-muted-text mt-1">Field Collection Dex // Real-time taxonomy parser</div>
+                </div>
+                <div class="grid grid-cols-3 gap-2 font-mono text-[10px] text-center">
+                  <div class="p-2 bg-night-card border border-night-border text-muted-text">INDEX: 1,420+</div>
+                  <div class="p-2 bg-night-card border border-night-border text-crimson">ACCURACY: 98.4%</div>
+                  <div class="p-2 bg-night-card border border-night-border text-muted-text">LATENCY: 240ms</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PROJECT 2: VESPER.AI -->
+        <div class="group hairline-border border-night-border hover:border-crimson/50 bg-night-card rounded-sharp p-6 lg:p-8 transition-colors">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-6 flex flex-col justify-between h-full">
+              <div>
+                <div class="flex items-center justify-between mb-4 font-mono text-xs">
+                  <span class="text-muted-text tracking-wider">PROJECT NO. 02 // INSPIRATION ANCHOR</span>
+                  <span class="px-2.5 py-1 bg-amber-500/10 text-amber-300 border border-amber-500/30 rounded-sharp flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-300"></span> STATUS: LIVE BETA
+                  </span>
+                </div>
+
+                <div class="flex items-baseline gap-3 mb-1">
+                  <h3 class="font-grotesk font-bold text-2xl sm:text-3xl text-warm-white group-hover:text-crimson transition-colors">
+                    VESPER.AI
+                  </h3>
+                  <span class="font-mono text-xs text-crimson tracking-widest italic">"Your Journey. Connected."</span>
+                </div>
+                <p class="font-mono text-xs text-crimson mb-4">versai-ai.vercel.app</p>
+
+                <p class="text-muted-text font-grotesk text-sm sm:text-base leading-relaxed mb-6">
+                  AI-powered student transport platform covering university shuttles, regional routes, and Tamil Nadu state transport networks. Features multi-modal journey planning, real-time schedule notifications, AI travel assistant, and strict user/admin permission gates backed by Supabase Row Level Security (RLS).
+                </p>
+
+                <!-- Mono tech tags -->
+                <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs">
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">HTML5</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">CSS3</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-crimson/40 text-crimson font-medium">Supabase RLS</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Journey Planner</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Tamil Nadu Transit APIs</span>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div class="flex items-center gap-4 pt-4 border-t hairline-border border-night-border">
+                <a href="https://versai-ai.vercel.app" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-crimson hover:bg-crimson/90 text-white font-mono text-xs uppercase tracking-wider rounded-sharp flex items-center gap-2 transition-all">
+                  <span>Live demo</span>
+                  <span>↗</span>
+                </a>
+                <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 hairline-border border-night-border hover:border-crimson text-muted-text hover:text-warm-white font-mono text-xs uppercase tracking-wider rounded-sharp flex items-center gap-2 transition-all">
+                  <span>GitHub</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Visual Mockup/Placeholder -->
+            <div class="lg:col-span-6 bg-night hairline-border border-night-border p-5 rounded-sharp relative overflow-hidden group-hover:border-crimson/30 transition-all">
+              <div class="flex items-center justify-between pb-3 border-b hairline-border border-night-border font-mono text-[11px] text-muted-text">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-crimson"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-night-border"></span>
+                </div>
+                <span>https://versai-ai.vercel.app</span>
+              </div>
+              <div class="pt-4 space-y-3 font-mono text-xs">
+                <div class="p-3 bg-night-card border border-crimson/30 flex justify-between items-center">
+                  <div class="text-warm-white font-semibold flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-crimson animate-pulse"></span> JOY UNIVERSITY SHUTTLE // LINE 4
+                  </div>
+                  <span class="text-crimson font-bold">NEXT: 18:45 IST</span>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-[11px]">
+                  <div class="p-2.5 bg-night-card border border-night-border text-muted-text">
+                    <span class="text-warm-white block font-semibold mb-0.5">TNSTC CONNECT</span>
+                    Direct State Express Feeder
+                  </div>
+                  <div class="p-2.5 bg-night-card border border-night-border text-muted-text">
+                    <span class="text-crimson block font-semibold mb-0.5">AUTH LEVEL: RLS</span>
+                    Admin &amp; Commuter Scoped
+                  </div>
+                </div>
+                <div class="p-2 bg-crimson-dim border border-crimson/20 text-center text-crimson text-[10px] tracking-wider">
+                  VESPER TRAVEL COMPANION RUNNING ON SUPABASE DB
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PROJECT 3: CRIMSON AI -->
+        <div class="group hairline-border border-night-border hover:border-crimson/50 bg-night-card rounded-sharp p-6 lg:p-8 transition-colors">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-6 flex flex-col justify-between h-full">
+              <div>
+                <div class="flex items-center justify-between mb-4 font-mono text-xs">
+                  <span class="text-muted-text tracking-wider">PROJECT NO. 03</span>
+                  <span class="px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-sharp flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> STATUS: LIVE
+                  </span>
+                </div>
+
+                <h3 class="font-grotesk font-bold text-2xl sm:text-3xl text-warm-white mb-2 group-hover:text-crimson transition-colors">
+                  CRIMSON AI
+                </h3>
+                <p class="font-mono text-xs text-crimson mb-4">crimson-iota.vercel.app</p>
+
+                <p class="text-muted-text font-grotesk text-sm sm:text-base leading-relaxed mb-6">
+                  Intelligent import/export orchestration suite featuring automated order routing, vessel &amp; shipment tracking, loyalty rewards, smart supplier recommendations, and a conversational trade assistant powered by Google AI Studio.
+                </p>
+
+                <!-- Mono tech tags -->
+                <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs">
+                  <span class="px-2.5 py-1 bg-night hairline-border border-crimson/40 text-crimson font-medium">Google AI Studio</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Supabase</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Gemini API</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">3D-Style UI</span>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div class="flex items-center gap-4 pt-4 border-t hairline-border border-night-border">
+                <a href="https://crimson-iota.vercel.app" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 bg-crimson hover:bg-crimson/90 text-white font-mono text-xs uppercase tracking-wider rounded-sharp flex items-center gap-2 transition-all">
+                  <span>Live demo</span>
+                  <span>↗</span>
+                </a>
+                <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 hairline-border border-night-border hover:border-crimson text-muted-text hover:text-warm-white font-mono text-xs uppercase tracking-wider rounded-sharp flex items-center gap-2 transition-all">
+                  <span>GitHub</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Visual Mockup/Placeholder -->
+            <div class="lg:col-span-6 bg-night hairline-border border-night-border p-5 rounded-sharp relative overflow-hidden group-hover:border-crimson/30 transition-all">
+              <div class="flex items-center justify-between pb-3 border-b hairline-border border-night-border font-mono text-[11px] text-muted-text">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-crimson"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-night-border"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-night-border"></span>
+                </div>
+                <span>https://crimson-iota.vercel.app</span>
+              </div>
+              <div class="pt-4 space-y-3 font-mono text-xs">
+                <div class="h-28 bg-night-card hairline-border border-night-border flex flex-col justify-center px-4">
+                  <div class="text-xs text-muted-text mb-1">IMPORT/EXPORT MANIFEST</div>
+                  <div class="text-warm-white font-grotesk font-bold text-lg">Consignment Routing Engine</div>
+                  <div class="text-[11px] text-crimson mt-1 flex items-center gap-2">
+                    <span class="inline-block w-1.5 h-1.5 bg-crimson"></span> GEMINI TRADE ASSISTANT ONLINE
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-[10px]">
+                  <div class="p-2 bg-night-card border border-night-border text-warm-white">LOGISTICS TELEMETRY: 100%</div>
+                  <div class="p-2 bg-night-card border border-night-border text-warm-white">CUSTOMS PRE-CHECK: VERIFIED</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PROJECT 4: CAREERPILOT AI -->
+        <div class="group hairline-border border-night-border bg-night-card/70 rounded-sharp p-6 lg:p-8 transition-colors">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-6 flex flex-col justify-between h-full">
+              <div>
+                <div class="flex items-center justify-between mb-4 font-mono text-xs">
+                  <span class="text-muted-text tracking-wider">PROJECT NO. 04 // HACKATHON BUILD</span>
+                  <span class="px-2.5 py-1 bg-amber-500/10 text-amber-200 border border-amber-500/20 rounded-sharp flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-300"></span> STATUS: CONCEPT
+                  </span>
+                </div>
+
+                <h3 class="font-grotesk font-bold text-2xl sm:text-3xl text-warm-white mb-2">
+                  CAREERPILOT AI
+                </h3>
+                <p class="font-mono text-xs text-muted-text mb-4">NIAT Hackathon Prototype</p>
+
+                <p class="text-muted-text font-grotesk text-sm sm:text-base leading-relaxed mb-6">
+                  Intelligent career diagnostic platform that audits a student's present coursework against real market roles, flags critical skill deficits, structures adaptive milestone pathways, and assigns an on-demand AI tutor.
+                </p>
+
+                <!-- Mono tech tags -->
+                <div class="flex flex-wrap gap-2 mb-6 font-mono text-xs">
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Skill Gap Analysis</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">Adaptive Learning</span>
+                  <span class="px-2.5 py-1 bg-night hairline-border border-night-border text-warm-white">AI Tutor Engine</span>
+                </div>
+              </div>
+
+              <!-- Status note (No live links as requested) -->
+              <div class="pt-4 border-t hairline-border border-night-border font-mono text-xs text-muted-text flex items-center gap-2">
+                <span class="text-amber">●</span>
+                <span>Hackathon concept design — repositories undergoing refactor for staging.</span>
+              </div>
+            </div>
+
+            <!-- Right Visual Mockup/Placeholder -->
+            <div class="lg:col-span-6 bg-night hairline-border border-night-border p-5 rounded-sharp">
+              <div class="flex items-center justify-between pb-3 border-b hairline-border border-night-border font-mono text-[11px] text-muted-text">
+                <span>CAREERPILOT AI // BLUEPRINT</span>
+                <span class="text-amber">CONCEPT ARCHITECTURE</span>
+              </div>
+              <div class="pt-4 space-y-2.5 font-mono text-xs">
+                <div class="p-3 bg-night-card border border-night-border">
+                  <div class="text-[10px] text-muted-text uppercase">Target Role</div>
+                  <div class="text-warm-white font-semibold">AI/ML Engineer &amp; Full-Stack Builder</div>
+                </div>
+                <div class="p-3 bg-night-card border border-night-border">
+                  <div class="text-[10px] text-muted-text uppercase">Identified Growth Vector</div>
+                  <div class="text-crimson font-semibold">Vector Embeddings, High-throughput RLS pipelines</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BANNER: IMAGE 1 CLASSROOM (Darkened, desaturated, crossed by transit line) -->
+    <section class="relative my-12 overflow-hidden hairline-border border-night-border mx-8 lg:mx-16 bg-night">
+      <div class="relative w-full h-64 md:h-80 lg:h-96">
+        <!-- Image 1: classroom, him focused among laptops -->
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxgmDLy5Tr3E_e-8NxFhfqo_ABJoIZlcY-rUABAdS42PUeccDvLj8chAq5-kdzrsu_sTLgfK4s_o9XT6I-QhJ5jQaO3k5Yz2mdFlB0cbxc9RrBuS9DU2M8_yCtLbEg8am5AuAeAfiodwcLfgvlm2frQydjzkvgIHzr2ZjPeEPqz4ILQ5jF7UoDC7xVS1PySdj4bcOcuFAyGxebkiiuB93SZLVP6xuvJosnrskODBrMdx5esv3xCIeD" alt="Boddu Harshavardhan collaborating at NIAT classroom" class="w-full h-full object-cover object-center filter grayscale contrast-125 brightness-40">
+        
+        <!-- Dark gradient wash to merge completely into palette -->
+        <div class="absolute inset-0 bg-night/70 mix-blend-multiply"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-night via-transparent to-night"></div>
+
+        <!-- Crossing transit line with glowing node -->
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[1px] bg-crimson/70">
+          <div class="max-w-[1440px] mx-auto relative px-8 flex items-center justify-between">
+            <div class="flex items-center gap-3 bg-night px-4 py-1.5 hairline-border border-crimson/50 font-mono text-xs text-warm-white">
+              <span class="w-2 h-2 rounded-full bg-crimson animate-pulse"></span>
+              <span>NIAT LABS // BOOTCAMP RUNTIME</span>
+            </div>
+            <div class="hidden sm:block font-mono text-xs text-muted-text bg-night/80 px-3 py-1 hairline-border border-night-border">
+              "LEARN. SHIP. ITERATE."
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute bottom-6 left-8 sm:left-12 font-mono text-xs text-muted-text">
+          <span>COHORT 2026 // JOY UNIVERSITY CAMPUS // CSE (AI/ML)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: STOP 02 / CODE (TIMETABLE TABLE) -->
+    <section id="code" class="relative py-20 pl-8 md:pl-28 lg:pl-36 pr-8 lg:pr-16">
+      
+      <!-- Station Node Marker -->
+      <div class="hidden md:flex absolute -left-[7px] top-24 items-center z-20">
+        <div class="station-node"></div>
+      </div>
+
+      <!-- Section Title & Station Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-6 border-b hairline-border border-night-border">
+        <div>
+          <div class="font-mono text-xs uppercase tracking-widest text-crimson mb-2 flex items-center gap-2">
+            <span>STOP 02</span>
+            <span class="text-muted-text">/ 05</span>
+            <span class="w-8 h-[1px] bg-crimson"></span>
+            <span class="text-muted-text">REPOSITORIES &amp; COMMITS</span>
+          </div>
+          <h2 class="font-grotesk font-bold text-3xl sm:text-4xl text-warm-white">
+            Code Timetable
+          </h2>
+        </div>
+        <div class="mt-4 md:mt-0 font-mono text-xs">
+          <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 hairline-border border-crimson/50 hover:bg-crimson hover:text-white text-crimson transition-all inline-flex items-center gap-2 rounded-sharp">
+            <span>github.com/Harshavardhan7396</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Timetable Style Table -->
+      <div class="hairline-border border-night-border bg-night-card rounded-sharp overflow-x-auto">
+        <table class="w-full text-left font-mono text-xs min-w-[700px]">
+          <thead class="border-b hairline-border border-night-border text-muted-text bg-night/80 uppercase text-[11px] tracking-wider">
+            <tr>
+              <th class="py-4 px-6">Repository</th>
+              <th class="py-4 px-6">Description</th>
+              <th class="py-4 px-6">Language</th>
+              <th class="py-4 px-6">Updated</th>
+              <th class="py-4 px-6 text-right">Link</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y hairline-border divide-night-border">
+            
+            <!-- Row 1: Wild-Dex -->
+            <tr class="hover:bg-night/50 transition-colors group">
+              <td class="py-5 px-6 font-bold text-warm-white group-hover:text-crimson transition-colors flex items-center gap-2">
+                <span class="text-crimson">●</span> Wild-Dex
+              </td>
+              <td class="py-5 px-6 text-muted-text font-grotesk max-w-xs">
+                AI biodiversity specimen detection and field observation ledger.
+              </td>
+              <td class="py-5 px-6">
+                <span class="px-2 py-1 bg-night border border-night-border text-warm-white">TypeScript / Python</span>
+              </td>
+              <td class="py-5 px-6 text-muted-text">Recent (2026)</td>
+              <td class="py-5 px-6 text-right">
+                <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="text-crimson hover:underline font-semibold tracking-wider">
+                  GITHUB ↗
+                </a>
+              </td>
+            </tr>
+
+            <!-- Row 2: Versai_ai -->
+            <tr class="hover:bg-night/50 transition-colors group">
+              <td class="py-5 px-6 font-bold text-warm-white group-hover:text-crimson transition-colors flex items-center gap-2">
+                <span class="text-crimson">●</span> Versai_ai
+              </td>
+              <td class="py-5 px-6 text-muted-text font-grotesk max-w-xs">
+                Vesper.ai transit engine, student shuttle routing &amp; Supabase RLS schema.
+              </td>
+              <td class="py-5 px-6">
+                <span class="px-2 py-1 bg-night border border-night-border text-warm-white">JavaScript / Supabase</span>
+              </td>
+              <td class="py-5 px-6 text-muted-text">Active (2026)</td>
+              <td class="py-5 px-6 text-right">
+                <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="text-crimson hover:underline font-semibold tracking-wider">
+                  GITHUB ↗
+                </a>
+              </td>
+            </tr>
+
+            <!-- Row 3: Crimson -->
+            <tr class="hover:bg-night/50 transition-colors group">
+              <td class="py-5 px-6 font-bold text-warm-white group-hover:text-crimson transition-colors flex items-center gap-2">
+                <span class="text-crimson">●</span> Crimson
+              </td>
+              <td class="py-5 px-6 text-muted-text font-grotesk max-w-xs">
+                Import-export logistics dashboard with Google AI Studio integrations.
+              </td>
+              <td class="py-5 px-6">
+                <span class="px-2 py-1 bg-night border border-night-border text-warm-white">HTML / Gemini API</span>
+              </td>
+              <td class="py-5 px-6 text-muted-text">Active (2026)</td>
+              <td class="py-5 px-6 text-right">
+                <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="text-crimson hover:underline font-semibold tracking-wider">
+                  GITHUB ↗
+                </a>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION: STOP 03 / ABOUT -->
+    <section id="about" class="relative py-20 pl-8 md:pl-28 lg:pl-36 pr-8 lg:pr-16">
+      
+      <!-- Station Node Marker -->
+      <div class="hidden md:flex absolute -left-[7px] top-24 items-center z-20">
+        <div class="station-node"></div>
+      </div>
+
+      <!-- Section Title & Station Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-6 border-b hairline-border border-night-border">
+        <div>
+          <div class="font-mono text-xs uppercase tracking-widest text-crimson mb-2 flex items-center gap-2">
+            <span>STOP 03</span>
+            <span class="text-muted-text">/ 05</span>
+            <span class="w-8 h-[1px] bg-crimson"></span>
+            <span class="text-muted-text">ENGINEER PROFILE</span>
+          </div>
+          <h2 class="font-grotesk font-bold text-3xl sm:text-4xl text-warm-white">
+            About Harshavardhan
+          </h2>
+        </div>
+        <div class="font-mono text-xs text-muted-text mt-4 md:mt-0">
+          STATION: EDUCATION &amp; MILESTONES
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Image 2 in crimson duotone tint -->
+        <div class="lg:col-span-4">
+          <div class="relative w-full aspect-[3/4] hairline-border border-crimson/40 bg-night-card rounded-sharp overflow-hidden">
+            <!-- Duotone Crimson Overlay Layers -->
+            <div class="absolute inset-0 bg-crimson mix-blend-multiply opacity-50 z-10"></div>
+            <div class="absolute inset-0 bg-night/20 z-10"></div>
+            
+            <!-- Image 2: portrait with crimson lanyard -->
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ3Bv9hkD8sMb0QBj8t-gsI8oDYDxbdSfSMLafIyE7UHdNWEoX2lM94bXsk5A4YifG9abFqor4rH0OBSD6o2WBVhidKyeFTru0LCNqTx6u5Y6_2ZVJmKAzj4Y6NW36zqs28Vg5GmvMX-eF8c7jL-4i9dJVXAFkeoGBOD7gMSf33pualDP0JYYlghjwSB8rgBnlA9qXitSHEyOq93K0140FcVGwrFCuo5nx4KdgOgPTx3p_I5VX3F-p" alt="Boddu Harshavardhan portrait with lanyard" class="w-full h-full object-cover duotone-crimson contrast-125">
+            
+            <!-- Card tag -->
+            <div class="absolute bottom-3 left-3 right-3 z-20 font-mono text-[10px] p-2 bg-night/90 border hairline-border border-crimson/50 text-warm-white flex items-center justify-between">
+              <span>NIAT ID: NB26100018</span>
+              <span class="text-crimson font-bold">BOOTCAMP 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio & Milestone Timetable -->
+        <div class="lg:col-span-8 space-y-8">
+          <div>
+            <h3 class="font-grotesk font-bold text-2xl text-warm-white mb-4">
+              AI-assisted product developer with a shipping mindset.
+            </h3>
+            <p class="font-grotesk text-base text-muted-text leading-relaxed mb-4">
+              First-year student at NIAT (National Institute of Advanced Technologies) with Joy University, Tamil Nadu, India. Building real products with AI tools, then reviewing and refining what they generate.
+            </p>
+            <p class="font-grotesk text-base text-muted-text leading-relaxed">
+              Passionate about bridging intelligence APIs with seamless commuter and community software. Currently focusing on building responsive user interfaces paired with secure Supabase backends, Row Level Security, and edge deployments.
+            </p>
+          </div>
+
+          <!-- Timetable list -->
+          <div class="pt-6 border-t hairline-border border-night-border">
+            <div class="font-mono text-xs text-crimson uppercase tracking-wider mb-4">
+              MILESTONE SCHEDULE // ROUTE TIMELINE
+            </div>
+
+            <div class="space-y-3 font-mono text-xs">
+              
+              <div class="p-4 hairline-border border-night-border bg-night-card flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-sharp">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-crimson"></span>
+                  <span class="text-warm-white font-semibold">B.Tech CSE (AI/ML)</span>
+                </div>
+                <div class="text-muted-text">NIAT x Joy University, Tamil Nadu</div>
+                <div class="text-crimson font-bold">2026 — PRESENT</div>
+              </div>
+
+              <div class="p-4 hairline-border border-night-border bg-night-card flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-sharp">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-crimson"></span>
+                  <span class="text-warm-white font-semibold">Bootcamp 2026</span>
+                </div>
+                <div class="text-muted-text">NIAT Advanced Developer Immersion</div>
+                <div class="text-crimson font-bold">2026</div>
+              </div>
+
+              <div class="p-4 hairline-border border-night-border bg-night-card flex flex-col sm:flex-row sm:items-center justify-between gap-2 rounded-sharp">
+                <div class="flex items-center gap-3">
+                  <span class="w-2 h-2 rounded-full bg-crimson"></span>
+                  <span class="text-warm-white font-semibold">College Hackathon</span>
+                </div>
+                <div class="text-muted-text">CareerPilot AI System Architecture</div>
+                <div class="text-crimson font-bold">2026</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION: STOP 04 / SKILLS -->
+    <section id="skills" class="relative py-20 pl-8 md:pl-28 lg:pl-36 pr-8 lg:pr-16">
+      
+      <!-- Station Node Marker -->
+      <div class="hidden md:flex absolute -left-[7px] top-24 items-center z-20">
+        <div class="station-node"></div>
+      </div>
+
+      <!-- Section Title & Station Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 pb-6 border-b hairline-border border-night-border">
+        <div>
+          <div class="font-mono text-xs uppercase tracking-widest text-crimson mb-2 flex items-center gap-2">
+            <span>STOP 04</span>
+            <span class="text-muted-text">/ 05</span>
+            <span class="w-8 h-[1px] bg-crimson"></span>
+            <span class="text-muted-text">TOOLING &amp; CAPABILITIES</span>
+          </div>
+          <h2 class="font-grotesk font-bold text-3xl sm:text-4xl text-warm-white">
+            Transit Line Skills Map
+          </h2>
+        </div>
+        <div class="font-mono text-xs text-muted-text mt-4 md:mt-0">
+          ALL INTERCONNECTING HUBS
+        </div>
+      </div>
+
+      <!-- Horizontal Line Map with Station Dots -->
+      <div class="relative py-8 overflow-x-auto">
+        <div class="min-w-[980px] relative px-4">
+          
+          <!-- The Horizontal Rail -->
+          <div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-[2px] bg-crimson"></div>
+
+          <!-- Station Nodes Grid -->
+          <div class="relative z-10 flex items-center justify-between">
+            
+            <!-- Python -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">Python</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Core &amp; ML</span>
+            </div>
+
+            <!-- HTML -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">HTML5</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Semantics</span>
+            </div>
+
+            <!-- CSS -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">CSS3</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Layout / UX</span>
+            </div>
+
+            <!-- Supabase -->
+            <div class="flex flex-col items-center group">
+              <div class="w-6 h-6 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C] ring-4 ring-crimson-dim">
+                <div class="w-2.5 h-2.5 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-crimson">Supabase</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Database Hub</span>
+            </div>
+
+            <!-- Row Level Security -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">Row Level Security</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Auth / DB Rules</span>
+            </div>
+
+            <!-- GitHub -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">GitHub</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Version Ctrl</span>
+            </div>
+
+            <!-- Claude -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">Claude</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Prompt Eng</span>
+            </div>
+
+            <!-- Google AI Studio -->
+            <div class="flex flex-col items-center group">
+              <div class="w-6 h-6 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C] ring-4 ring-crimson-dim">
+                <div class="w-2.5 h-2.5 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-crimson">Google AI Studio</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Model Prototyping</span>
+            </div>
+
+            <!-- Gemini -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">Gemini</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Multimodal LLM</span>
+            </div>
+
+            <!-- Antigravity -->
+            <div class="flex flex-col items-center group">
+              <div class="w-5 h-5 rounded-full bg-night border-2 border-crimson flex items-center justify-center mb-3 group-hover:scale-125 transition-transform bg-[#08090C]">
+                <div class="w-2 h-2 rounded-full bg-crimson"></div>
+              </div>
+              <span class="font-mono text-xs font-bold text-warm-white">Antigravity</span>
+              <span class="font-mono text-[10px] text-muted-text mt-0.5">Creative Stack</span>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CONTACT / FINAL STOP -->
+    <section id="contact" class="relative py-24 pl-8 md:pl-28 lg:pl-36 pr-8 lg:pr-16">
+      
+      <!-- Final Station Node Marker -->
+      <div class="hidden md:flex absolute -left-[9px] top-24 items-center z-20">
+        <div class="w-5 h-5 rounded-full bg-crimson border-4 border-night"></div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b hairline-border border-night-border">
+        <div>
+          <div class="font-mono text-xs uppercase tracking-widest text-crimson mb-2 flex items-center gap-2">
+            <span>FINAL STOP</span>
+            <span class="text-muted-text">/ DESTINATION TERMINUS</span>
+          </div>
+          <h2 class="font-grotesk font-bold text-4xl sm:text-5xl lg:text-6xl text-warm-white tracking-tight">
+            Final stop: let’s talk.
+          </h2>
+        </div>
+        <div class="font-mono text-xs text-muted-text mt-4 md:mt-0 flex items-center gap-2">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+          <span>DISPATCH STATUS: ACCEPTING INTERNSHIP OFFERS</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Direct Channels -->
+        <div class="lg:col-span-5 space-y-8">
+          <p class="font-grotesk text-lg text-muted-text leading-relaxed">
+            Looking for an ambitious, fast-moving developer who builds with AI workflows and ships clean production software? Let's connect on your next product initiative.
+          </p>
+
+          <div class="space-y-4 font-mono text-xs">
+            
+            <a href="mailto:bodduharshavardhan41@gmail.com" class="p-4 hairline-border border-night-border hover:border-crimson bg-night-card rounded-sharp flex items-center justify-between group transition-colors block">
+              <div>
+                <div class="text-[10px] text-muted-text uppercase">Direct Transmission / Email</div>
+                <div class="text-warm-white font-semibold text-sm group-hover:text-crimson mt-0.5">bodduharshavardhan41@gmail.com</div>
+              </div>
+              <span class="text-crimson">↗</span>
+            </a>
+
+            <a href="https://github.com/Harshavardhan7396" target="_blank" rel="noopener noreferrer" class="p-4 hairline-border border-night-border hover:border-crimson bg-night-card rounded-sharp flex items-center justify-between group transition-colors block">
+              <div>
+                <div class="text-[10px] text-muted-text uppercase">Code Repository</div>
+                <div class="text-warm-white font-semibold text-sm group-hover:text-crimson mt-0.5">github.com/Harshavardhan7396</div>
+              </div>
+              <span class="text-crimson">↗</span>
+            </a>
+
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-4 hairline-border border-night-border hover:border-crimson bg-night-card rounded-sharp flex items-center justify-between group transition-colors block">
+              <div>
+                <div class="text-[10px] text-muted-text uppercase">Professional Network</div>
+                <div class="text-warm-white font-semibold text-sm group-hover:text-crimson mt-0.5">LinkedIn Profile</div>
+              </div>
+              <span class="text-crimson">↗</span>
+            </a>
+
+          </div>
+
+          <div class="p-4 bg-night border border-crimson/30 font-mono text-xs text-muted-text">
+            <span class="text-crimson font-bold">[RADAR NOTICE]</span> Open to remote AI/ML and Web Development internships globally, and onsite opportunities in India.
+          </div>
+        </div>
+
+        <!-- Right: Minimal Underlined Form -->
+        <div class="lg:col-span-7 hairline-border border-night-border bg-night-card p-8 rounded-sharp">
+          <div class="font-mono text-xs text-muted-text uppercase tracking-wider mb-6 flex items-center justify-between pb-3 border-b border-night-border">
+            <span>TRANSMIT DISPATCH MESSAGE</span>
+            <span class="text-crimson">SYSTEM ON-LINE</span>
+          </div>
+
+          <form action="#" method="POST" class="space-y-6" onsubmit="event.preventDefault(); alert('Message dispatched! Harshavardhan will get back to you shortly.');">
+            
+            <div class="relative">
+              <label for="name" class="block font-mono text-[11px] text-muted-text uppercase mb-2">01 / Commuter or Recruiter Name</label>
+              <input type="text" id="name" required placeholder="e.g. Maya Chen" class="w-full bg-night px-4 py-3 border-b-2 border-night-border focus:border-crimson text-warm-white font-grotesk placeholder-muted-text/50 outline-none transition-colors rounded-none">
+            </div>
+
+            <div class="relative">
+              <label for="email" class="block font-mono text-[11px] text-muted-text uppercase mb-2">02 / Return Address (Email)</label>
+              <input type="email" id="email" required placeholder="e.g. recruiter@company.ai" class="w-full bg-night px-4 py-3 border-b-2 border-night-border focus:border-crimson text-warm-white font-grotesk placeholder-muted-text/50 outline-none transition-colors rounded-none">
+            </div>
+
+            <div class="relative">
+              <label for="message" class="block font-mono text-[11px] text-muted-text uppercase mb-2">03 / Route Inquiries &amp; Opportunity Details</label>
+              <textarea id="message" rows="4" required placeholder="Details about your team, internship role, or product collaboration..." class="w-full bg-night px-4 py-3 border-b-2 border-night-border focus:border-crimson text-warm-white font-grotesk placeholder-muted-text/50 outline-none transition-colors rounded-none resize-none"></textarea>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between">
+              <span class="font-mono text-[11px] text-muted-text">ENCRYPTED DISPATCH // LATENCY 40MS</span>
+              <button type="submit" class="px-8 py-3.5 bg-crimson hover:bg-crimson/90 text-white font-mono text-xs font-semibold uppercase tracking-widest rounded-sharp transition-all flex items-center gap-2">
+                <span>Send Dispatch</span>
+                <span>→</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t hairline-border border-night-border py-10 px-8 lg:px-16 text-muted-text font-mono text-xs">
+      <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="w-2 h-2 rounded-full bg-crimson"></span>
+          <span class="text-warm-white font-semibold">©2026 Boddu Harshavardhan</span>
+          <span class="text-night-border">|</span>
+          <span>B.Tech CSE (AI/ML) — NIAT x Joy University</span>
+        </div>
+        <div class="text-center md:text-right">
+          <span>Built with Google AI Studio, Supabase and Vercel.</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
